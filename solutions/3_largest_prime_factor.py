@@ -2,17 +2,12 @@ t = 600851475143
 
 primes = [2, 3, 5, 7]
 
-
 def find_widest_factor(n):
     # worst case n for primes ugh
     for x in range(2, n):
         if n % x == 0:
             return (x, int(n / x))
     return None, n
-
-
-# for p in primes:
-#     print(find_widest_factor(p))
 
 
 def largest_prime_factor(t):

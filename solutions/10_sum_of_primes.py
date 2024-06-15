@@ -10,6 +10,4 @@ def seive(n):
     return [i + 2 for i, is_prime in enumerate(mem[2:]) if is_prime]
 
 
-primes = seive(2000000)
-
-print(primes[10000])
+print(len(seive(2000000)))
