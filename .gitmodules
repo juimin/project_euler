@@ -1,0 +1,4 @@
+[submodule ".devcontainer"]
+	path = .devcontainer
+	url = git@github.com:juimin/devcontainers.git
+	branch = language/python
