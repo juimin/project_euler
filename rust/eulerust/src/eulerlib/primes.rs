@@ -1,13 +1,10 @@
 pub fn find_primes_sieve(n: u64) -> Vec<u64> {
     // find all primes using the unoptimized sieve method
-    let vec_size = ((n + 1) as f64).sqrt().round() as usize;
+    let vec_size = (n + 1) as usize;
     let mut potential_primes: Vec<bool> = vec![true; vec_size];
-
-    println!("FInding potential primes in {}", n);
 
     for num in 2..vec_size {
         let is_potential_prime: bool = potential_primes[num];
-
         if is_potential_prime && is_prime_trial_div(num as u64) {
             let mut tmp = num * 2;
             while tmp < (vec_size as usize) {
@@ -17,16 +14,12 @@ pub fn find_primes_sieve(n: u64) -> Vec<u64> {
         }
     }
 
-    println!("Finished finding potential primes");
-
     let mut primes: Vec<u64> = Vec::new();
-    for i in 1..vec_size - 1 {
+    for i in 1..vec_size {
         if potential_primes[i] {
             primes.push(i as u64);
         }
     }
-
-    println!("Found {} primes", primes.len());
 
     return primes
 
@@ -42,17 +35,4 @@ pub fn is_prime_trial_div(n: u64) -> bool {
     }
 
     return true
-}
-
-pub fn prime_factors(n: u64) -> Vec<u64> {
-    let primes = find_primes_sieve(n);
-
-    let mut factors = Vec::new();
-    for x in primes {
-        if n % x == 0 {
-            factors.push(n)
-        }
-    }
-
-    return factors
 }

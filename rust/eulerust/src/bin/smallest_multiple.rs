@@ -1,22 +1,38 @@
 use std::collections::HashSet;
-use eulerust::eulerlib::primes;
+use eulerust::eulerlib::factors;
 
 fn main() {
     let target = 10;
 
     let mut potential_factors: HashSet<u64> = HashSet::new();
 
-    for n in (target + 1)..1 {
+    for n in 1..(target + 1) {
         potential_factors.insert(n);
     }
 
-    println!("Potential Factors {:?}", potential_factors);
-
-    for n in (target + 1)..1 {
+    for n in 1..(target + 1) {
         if potential_factors.contains(&n) {
-            let prime_factors = primes::prime_factors(n);
-            println!("Prime factors of {}, {:?}", n, prime_factors);
+            let factors = factors::get_factors(n);
+            for f in factors {
+                if f != n && potential_factors.contains(&f) {
+                    potential_factors.remove(&f);
+                }
+            }
         }
     }
+
+    println!("Reduced Factors: {:?}", potential_factors);
+
+    let mut prime_factor_set: HashSet<u64> = HashSet::new();
+
+    for n in potential_factors {
+        for pf in factors::get_prime_factors(n) {
+            prime_factor_set.insert(pf);
+        }
+
+    }
+
+    println!("Reduced Prime Factors: {:?}", prime_factor_set);
+
 
 }
