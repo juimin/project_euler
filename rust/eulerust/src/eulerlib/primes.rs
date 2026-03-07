@@ -43,3 +43,16 @@ pub fn is_prime_trial_div(n: u64) -> bool {
 
     return true
 }
+
+pub fn prime_factors(n: u64) -> Vec<u64> {
+    let primes = find_primes_sieve(n)
+
+    let mut factors = Vec::new();
+    for x in primes {
+        if n % x == 0 {
+            factors.push(n)
+        }
+    }
+
+    return prime_factors
+}
