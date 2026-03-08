@@ -1,6 +1,5 @@
 use eulerust::eulerlib::factors;
 
-
 fn main() {
     let target: u64 = 600851475143;
 
