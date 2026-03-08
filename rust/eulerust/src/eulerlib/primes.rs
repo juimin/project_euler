@@ -25,6 +25,10 @@ pub fn find_primes_sieve(n: u64) -> Vec<u64> {
 
 }
 
+
+
+
+
 pub fn is_prime_trial_div(n: u64) -> bool {
     let mut val = 2;
     while (val * val) <= n {
