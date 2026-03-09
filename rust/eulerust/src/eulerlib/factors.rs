@@ -1,6 +1,7 @@
 use super::primes;
 
 pub fn get_factors(n: u64) -> Vec<u64> {
+    // trial division
     let mut factors: Vec<u64> = Vec::new();
 
     for x in 1..n + 1 {
@@ -10,6 +11,22 @@ pub fn get_factors(n: u64) -> Vec<u64> {
     }
 
     return factors
+}
+
+pub fn count_divisors(n: u64) -> u64 {
+    // trial division
+    let mut divisors = 0;
+
+    for x in 1..n + 1 {
+        if n % x == 0 {
+            divisors += 2;
+        }
+        if x * x > n {
+            return divisors;
+        }
+    }
+
+    return divisors
 }
 
 pub fn get_prime_factors(n: u64) -> Vec<u64> {
