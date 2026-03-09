@@ -27,7 +27,6 @@ fn main() {
             println!("{} has {} factors", tn, divisors);
         }
         
-
         if divisors > threshold {
             println!("First triangular number with > {} factors is {} with {} factors", threshold, tn, divisors);
             exit(0)
