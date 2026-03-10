@@ -1,6 +1,6 @@
 use eulerust::eulerlib::misc;
 
-fn main() {
+fn naive_main() {
     // let v = vec!['1','0', '0'];
     // let res = misc::char_int_multiplier(&v, 10);
     // println!("Got Res: {:?}",res);
@@ -42,4 +42,28 @@ fn main() {
 
 
     println!("Last {} digits of self power up to {} : {:?}", required_digits, target, &result[result.len()-required_digits..result.len()]);
+}
+
+
+fn mod_pow(mut base: u128, mut exp: u32, modulus: u128) -> u128 {
+    let mut result = 1;
+    while exp > 0 {
+        println!("Calculating e:{} b:{} r:{}", exp, base, result);
+        if exp % 2 == 1 {
+            result = (result * base) % modulus;
+        }
+        exp = exp >> 1;
+        base = (base * base) % modulus;
+    }
+    result
+}
+
+fn main() {
+    const MOD: u128 = 10_000_000_000;
+    
+    let mut res: u128 = 0;
+    for i in 1..=1000 {
+        res = (res + mod_pow(i, i as u32, MOD)) % MOD;
+    }
+    println!("{}", res);
 }
