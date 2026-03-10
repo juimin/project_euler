@@ -86,7 +86,21 @@ pub fn char_int_adder(first: &Vec<char>, second: &Vec<char>) -> Vec<char> {
     return result
 }
 
-pub fn char_int_turtle_multiplier(num: &Vec<char>, multiples: i32) -> Vec<char> {
+pub fn int_to_vec(n: u32) -> Vec<char> {
+    let mut result: Vec<char> = Vec::new();
+
+    let mut m = n;
+    while m != 0 {
+        result.push(char::from_digit(m % 10, 19).unwrap());
+        m = m / 10;
+    }
+    
+    result.reverse();
+
+    return result;
+}
+
+pub fn char_int_turtle_multiplier(num: &Vec<char>, multiples: u32) -> Vec<char> {
     let mut result: Vec<char> = Vec::new();
     result.push('0');
 
@@ -98,4 +112,68 @@ pub fn char_int_turtle_multiplier(num: &Vec<char>, multiples: i32) -> Vec<char> 
     // println!("char_int_turtle_multiplier {:?} * {} = {:?}", num, multiples, result);
 
     return result
+}
+
+pub fn char_int_single_multiplier(first:  &Vec<char>, second_digit: char) -> Vec<char> {
+    let mut first_copy = Vec::new();
+    first_copy.resize(first.len(), '0');
+    first_copy.copy_from_slice(&first);
+    first_copy.reverse();
+
+    if second_digit == '0' {
+        return vec!['0'];
+    }
+
+    let iterations = first.len();
+
+    let mut result = Vec::new();
+    let mut carry = '0';
+    for i in 0..iterations + 1 {
+        let mut first_digit = '0';
+        if i < first_copy.len() {
+            first_digit = first_copy[i];
+        }
+
+        let sum = first_digit.to_digit(10).unwrap() * second_digit.to_digit(10).unwrap() + carry.to_digit(10).unwrap();
+
+        result.push(char::from_digit(sum % 10, 10).unwrap());
+        carry = char::from_digit(sum / 10, 10).unwrap();
+
+        // println!("chat_int_addr result: {:?}", result);
+    }
+
+    while *result.last().unwrap() == '0' {
+        result.pop();
+    }
+
+    result.reverse();
+    
+    // println!("char_int_single_multiplier final result: {:?} * {} = {:?}", first, second_digit, result);
+
+    return result
+}
+
+pub fn char_int_multiplier(num: &Vec<char>, multiplier: u32) -> Vec<char> {
+    let mut result: Vec<char> = Vec::new();
+    let mut multi_vec = int_to_vec(multiplier);
+    multi_vec.reverse();
+
+    // println!("Multiplying {:?} by {:?}", num, multi_vec);
+
+    for i in 0..multi_vec.len() {
+        let mut sub_val: Vec<char> = Vec::new();
+
+        let trial = char_int_single_multiplier(num, multi_vec[i]);
+        sub_val.extend_from_slice(&trial);
+
+        for _ in 0..i {
+            sub_val.push('0');
+        }
+
+        // println!("sub_val final result {:?}", sub_val);
+
+        result = char_int_adder(&result, &sub_val);
+    }
+
+    return result;
 }

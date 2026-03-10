@@ -6,7 +6,7 @@ fn main() {
     let mut result: Vec<char> = Vec::new();
     result.push('1');
     for multiplier in 1..target_factorial + 1 {
-        result = misc::char_int_turtle_multiplier(&result, multiplier);
+        result = misc::char_int_multiplier(&result, multiplier);
     }
 
     let mut final_sum = 0;
