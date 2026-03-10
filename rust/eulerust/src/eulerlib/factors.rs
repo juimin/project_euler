@@ -29,6 +29,27 @@ pub fn count_divisors(n: u64) -> u64 {
     return divisors
 }
 
+pub fn sum_divisors(n: u64, include_n: bool) -> u64 {
+    // trial division
+    let mut divisors = 0;
+
+    let mut bound = n;
+    if include_n {
+        bound += 1;
+    }
+
+    for x in 1..bound {
+        if n % x == 0 {
+
+            println!("Found divisor {}", x);
+            divisors += x;
+        }
+    }
+
+    return divisors
+}
+
+
 pub fn get_prime_factors(n: u64) -> Vec<u64> {
     let primes = primes::find_primes_sieve(n);
     

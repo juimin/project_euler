@@ -8,6 +8,16 @@ pub fn is_palindrome(pal_str: &Vec<char>) -> bool {
     return true
 }
 
+pub fn factorial(n: u64) -> u64 {
+    let mut x = 1;
+
+    for y in 1..n + 1 {
+        x *= y;
+    }
+
+    return x;
+}
+
 pub fn int_to_binary_vec(n: u64) -> Vec<char> {
     let mut consumable = n;
 
@@ -118,6 +128,20 @@ pub fn int_to_vec(n: u32) -> Vec<char> {
     let mut m = n;
     while m != 0 {
         result.push(char::from_digit(m % 10, 19).unwrap());
+        m = m / 10;
+    }
+    
+    result.reverse();
+
+    return result;
+}
+
+pub fn int_to_digit_vec(n: u32) -> Vec<u32> {
+    let mut result: Vec<u32> = Vec::new();
+
+    let mut m = n;
+    while m != 0 {
+        result.push(m % 10);
         m = m / 10;
     }
     
