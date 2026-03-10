@@ -1,4 +1,4 @@
-pub fn is_palindrome(pal_str: Vec<char>) -> bool {
+pub fn is_palindrome(pal_str: &Vec<char>) -> bool {
     for idx in 0..pal_str.len() {
         if pal_str[idx] != pal_str[pal_str.len() - (idx + 1)] {
             return false
@@ -8,9 +8,32 @@ pub fn is_palindrome(pal_str: Vec<char>) -> bool {
     return true
 }
 
+pub fn int_to_binary_vec(n: u64) -> Vec<char> {
+    let mut consumable = n;
+
+    let mut result: Vec<char> = Vec::new();
+    for _ in 0..64 {
+        let bit = consumable & 1;
+        if bit == 1 {
+            result.push('1');
+        } else {
+            result.push('0');
+        }
+        consumable = consumable >> 1;
+    }
+
+    while result.len() > 0 && *result.last().unwrap() == '0' {
+        result.pop();
+    }
+
+    result.reverse();
+
+    return result;
+}
+
 pub fn int_is_palindrome(u: u64) -> bool {
     let pal_str: Vec<char> = u.to_string().chars().collect();
-    return is_palindrome(pal_str)
+    return is_palindrome(&pal_str)
 }
 
 pub fn char_int_doubler(char_int: Vec<char>) -> Vec<char> {
