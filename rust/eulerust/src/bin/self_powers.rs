@@ -7,6 +7,7 @@ fn main() {
     // exit(0);
 
     let target = 1000;
+    let required_digits = 10;
 
     let mut result = Vec::new();
     result.push('0');
@@ -18,11 +19,27 @@ fn main() {
         }
         
         result = misc::char_int_adder(&result, &self_power);
+
+        let mut truncated: Vec<char> = Vec::new();
+
+        let mut stopping = required_digits;
+        if result.len() < required_digits {
+            stopping = result.len();
+        }
+
+        for _ in 0..stopping {
+            truncated.push(result.pop().unwrap());
+        }
+
+        truncated.reverse();
+
+        result = truncated;
+
         println!("Finished calculating self power of {}", i);
         // println!("Self power: {:?}", self_power);
     }
 
-    let required_digits = 10;
+
 
     println!("Last {} digits of self power up to {} : {:?}", required_digits, target, &result[result.len()-required_digits..result.len()]);
 }
