@@ -6,7 +6,7 @@ fn main() {
     for x in 100..1000 {
         for y in 100..1000 {
             let product = x * y;
-            let is_palindrome = misc::is_palindrome(product);
+            let is_palindrome = misc::int_is_palindrome(product);
             // println!("Num {} is palindrome: {}", product, is_palindrome);
             if is_palindrome && product > max {
                 max = product

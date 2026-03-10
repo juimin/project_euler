@@ -1,6 +1,4 @@
-pub fn is_palindrome(u: u64) -> bool {
-    let pal_str: Vec<char> = u.to_string().chars().collect();
-
+pub fn is_palindrome(pal_str: Vec<char>) -> bool {
     for idx in 0..pal_str.len() {
         if pal_str[idx] != pal_str[pal_str.len() - (idx + 1)] {
             return false
@@ -8,6 +6,11 @@ pub fn is_palindrome(u: u64) -> bool {
     }
 
     return true
+}
+
+pub fn int_is_palindrome(u: u64) -> bool {
+    let pal_str: Vec<char> = u.to_string().chars().collect();
+    return is_palindrome(pal_str)
 }
 
 pub fn char_int_doubler(char_int: Vec<char>) -> Vec<char> {
