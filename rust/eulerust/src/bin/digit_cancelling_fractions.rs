@@ -37,5 +37,5 @@ fn main() {
     let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
 
 
-    println!("Final Fraction: {} / {} - took {:?}", final_numerator, final_denominator, (end - start).as_micros());
+    println!("Final Fraction: {} / {} - took {:?}", final_numerator, final_denominator, (end - start).as_millis());
 }
